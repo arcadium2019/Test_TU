@@ -1,43 +1,23 @@
 package org.example.exo1;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GradingCalculatorTest {
 
-    @Test
-    void score95Presence90_shouldReturnA() {
-        assertEquals('A', new GradingCalculator(95, 90).getGrade());
-    }
-
-    @Test
-    void score85Presence90_shouldReturnB() {
-        assertEquals('B', new GradingCalculator(85, 90).getGrade());
-    }
-
-    @Test
-    void score65Presence90_shouldReturnC() {
-        assertEquals('C', new GradingCalculator(65, 90).getGrade());
-    }
-
-    @Test
-    void score95Presence65_shouldReturnB() {
-        assertEquals('B', new GradingCalculator(95, 65).getGrade());
-    }
-
-    @Test
-    void score95Presence55_shouldReturnF() {
-        assertEquals('F', new GradingCalculator(95, 55).getGrade());
-    }
-
-    @Test
-    void score65Presence55_shouldReturnF() {
-        assertEquals('F', new GradingCalculator(65, 55).getGrade());
-    }
-
-    @Test
-    void score50Presence90_shouldReturnF() {
-        assertEquals('F', new GradingCalculator(50, 90).getGrade());
+    @ParameterizedTest
+    @CsvSource({
+        "95, 90, A",
+        "85, 90, B",
+        "65, 90, C",
+        "95, 65, B",
+        "95, 55, F",
+        "65, 55, F",
+        "50, 90, F"
+    })
+    void getGrade_shouldReturnExpectedGrade(int score, int attendance, char expectedGrade) {
+        assertEquals(expectedGrade, new GradingCalculator(score, attendance).getGrade());
     }
 }
