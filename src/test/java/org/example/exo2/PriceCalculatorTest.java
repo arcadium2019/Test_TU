@@ -7,8 +7,6 @@ public class PriceCalculatorTest {
 
     private final PriceCalculator calculator = new PriceCalculator();
 
-    // Cas nominaux
-
     @Test
     void calculateTotalPrice_shouldReturn30() {
         assertEquals(30.0, calculator.calculateTotalPrice(10.0, 3));
@@ -28,8 +26,6 @@ public class PriceCalculatorTest {
     void calculatePriceWithVat_shouldReturn120() {
         assertEquals(120.0, calculator.calculatePriceWithVat(100.0, 0.20));
     }
-
-    // Cas d'erreur
 
     @Test
     void calculateTotalPrice_negativeUnitPrice_shouldThrow() {
