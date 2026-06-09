@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommandeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exo7</a> &gt; <a href="index.source.html" class="el_package">org.example.exo7.service</a> &gt; <span class="el_source">CommandeService.java</span></div><h1>CommandeService.java</h1><pre class="source lang-java linenums">package org.example.exo7.service;
+
+import org.example.exo7.model.Commande;
+import org.example.exo7.model.Produit;
+import org.example.exo7.model.Recu;
+import org.example.exo7.repository.ProduitRepository;
+
+import java.util.Optional;
+
+public class CommandeService {
+
+    private final ProduitRepository produitRepository;
+
+<span class="fc" id="L14">    public CommandeService(ProduitRepository produitRepository) {</span>
+<span class="fc" id="L15">        this.produitRepository = produitRepository;</span>
+<span class="fc" id="L16">    }</span>
+
+    public Recu passerCommande(Commande commande) {
+<span class="fc" id="L19">        Optional&lt;Produit&gt; optProduit = produitRepository.findByReference(commande.getReferenceProduit());</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (optProduit.isEmpty()) {</span>
+<span class="fc" id="L21">            throw new CommandeRefuseeException(&quot;Produit inconnu&quot;);</span>
+        }
+
+<span class="fc" id="L24">        Produit produit = optProduit.get();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (commande.getQuantite() &gt; produit.getStock()) {</span>
+<span class="fc" id="L26">            throw new CommandeRefuseeException(&quot;Stock insuffisant&quot;);</span>
+        }
+
+<span class="fc bfc" id="L29" title="All 3 branches covered.">        double remise = switch (commande.getTypeClient()) {</span>
+<span class="fc" id="L30">            case STANDARD -&gt; 0.0;</span>
+<span class="fc" id="L31">            case PREMIUM  -&gt; 0.10;</span>
+<span class="fc" id="L32">            case VIP      -&gt; 0.20;</span>
+        };
+
+<span class="fc" id="L35">        double montant = produit.getPrixUnitaire() * commande.getQuantite() * (1 - remise);</span>
+<span class="fc" id="L36">        return new Recu(commande.getReferenceProduit(), commande.getQuantite(), montant, &quot;Commande confirmée&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

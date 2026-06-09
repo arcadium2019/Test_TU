@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Exo7,org.example.exo7.service,CommandeRefuseeException,0,4,0,0,0,2,0,1,0,1
+Exo7,org.example.exo7.service,CommandeService,0,67,0,7,0,15,0,6,0,2
+Exo7,org.example.exo7.model,TypeClient,0,21,0,0,0,2,0,1,0,1
+Exo7,org.example.exo7.model,Commande,3,24,0,0,1,9,1,4,1,4
+Exo7,org.example.exo7.model,Recu,6,21,0,0,2,8,2,3,2,3
+Exo7,org.example.exo7.model,Produit,6,21,0,0,2,8,2,3,2,3
+Exo7,org.example,Main,21,0,2,0,5,0,3,0,2,0

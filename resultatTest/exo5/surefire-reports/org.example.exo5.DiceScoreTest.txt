@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.example.exo5.DiceScoreTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.895 s -- in org.example.exo5.DiceScoreTest

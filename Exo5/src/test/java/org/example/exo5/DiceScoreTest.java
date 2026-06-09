@@ -1,0 +1,46 @@
+package org.example.exo5;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class DiceScoreTest {
+
+    @Mock
+    private Ide de;
+
+    @Test
+    void getScore_identicalDice_shouldReturnValueTimes2Plus10() {
+        when(de.getRoll()).thenReturn(4, 4);
+        assertEquals(18, new DiceScore(de).getScore());
+    }
+
+    @Test
+    void getScore_identicalDiceOf1_shouldReturn12() {
+        when(de.getRoll()).thenReturn(1, 1);
+        assertEquals(12, new DiceScore(de).getScore());
+    }
+
+    @Test
+    void getScore_identicalDiceOf6_shouldReturn30() {
+        when(de.getRoll()).thenReturn(6, 6);
+        assertEquals(30, new DiceScore(de).getScore());
+    }
+
+    @Test
+    void getScore_differentDice_shouldReturnHighest() {
+        when(de.getRoll()).thenReturn(3, 5);
+        assertEquals(5, new DiceScore(de).getScore());
+    }
+
+    @Test
+    void getScore_differentDiceReversed_shouldReturnHighest() {
+        when(de.getRoll()).thenReturn(6, 2);
+        assertEquals(6, new DiceScore(de).getScore());
+    }
+}
