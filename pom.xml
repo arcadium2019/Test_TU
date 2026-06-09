@@ -7,6 +7,17 @@
     <groupId>org.example</groupId>
     <artifactId>exo_1_2</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>Exo1</module>
+        <module>Exo2</module>
+        <module>Exo3</module>
+        <module>Exo4</module>
+        <module>Exo5</module>
+        <module>Exo6</module>
+        <module>Exo7</module>
+        <module>Exo8</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
