@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exo12</a> &gt; <a href="index.source.html" class="el_package">org.example.exo12.controller</a> &gt; <span class="el_source">ReservationController.java</span></div><h1>ReservationController.java</h1><pre class="source lang-java linenums">package org.example.exo12.controller;
+
+import jakarta.validation.Valid;
+import org.example.exo12.dto.CreateReservationRequest;
+import org.example.exo12.model.Reservation;
+import org.example.exo12.service.ReservationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(&quot;/api/reservations&quot;)
+public class ReservationController {
+
+    private final ReservationService service;
+
+<span class="fc" id="L16">    public ReservationController(ReservationService service) {</span>
+<span class="fc" id="L17">        this.service = service;</span>
+<span class="fc" id="L18">    }</span>
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation create(@Valid @RequestBody CreateReservationRequest request) {
+<span class="fc" id="L23">        return service.createReservation(</span>
+<span class="fc" id="L24">                request.getRoomId(),</span>
+<span class="fc" id="L25">                request.getBookedBy(),</span>
+<span class="fc" id="L26">                request.getStartTime(),</span>
+<span class="fc" id="L27">                request.getEndTime());</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public Reservation getById(@PathVariable(&quot;id&quot;) String id) {
+<span class="fc" id="L32">        return service.findById(id);</span>
+    }
+
+    @PatchMapping(&quot;/{id}/cancel&quot;)
+    public Reservation cancel(@PathVariable(&quot;id&quot;) String id) {
+<span class="fc" id="L37">        return service.cancelReservation(id);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

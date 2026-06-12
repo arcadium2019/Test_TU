@@ -1,0 +1,12 @@
+package org.example.exo11.repository;
+
+import org.example.exo11.model.Ticket;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface TicketRepository {
+    Ticket save(Ticket ticket);
+    Optional<Ticket> findById(String id);
+    List<Ticket> findAll();
+}

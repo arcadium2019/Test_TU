@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateTicketRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exo11</a> &gt; <a href="index.source.html" class="el_package">org.example.exo11.dto</a> &gt; <span class="el_source">CreateTicketRequest.java</span></div><h1>CreateTicketRequest.java</h1><pre class="source lang-java linenums">package org.example.exo11.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.example.exo11.model.Priority;
+
+<span class="fc" id="L8">public class CreateTicketRequest {</span>
+
+    @NotBlank(message = &quot;Title is required&quot;)
+    @Size(min = 3, message = &quot;Title must have at least 3 characters&quot;)
+    private String title;
+
+    @NotNull(message = &quot;Priority is required&quot;)
+    private Priority priority;
+
+<span class="fc" id="L17">    public String getTitle()          { return title; }</span>
+<span class="fc" id="L18">    public Priority getPriority()     { return priority; }</span>
+<span class="fc" id="L19">    public void setTitle(String t)    { this.title = t; }</span>
+<span class="fc" id="L20">    public void setPriority(Priority p) { this.priority = p; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,5 @@
+org/example/exo11/bdd/CucumberRunnerTest.class
+org/example/exo11/integration/TicketIntegrationTest.class
+org/example/exo11/service/TicketServiceTest.class
+org/example/exo11/controller/TicketControllerTest.class
+org/example/exo11/bdd/steps/TicketSteps.class

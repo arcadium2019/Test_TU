@@ -1,0 +1,6 @@
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/bdd/CucumberRunnerTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/bdd/steps/ReservationSteps.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/controller/ReservationControllerTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/controller/RoomControllerTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/integration/ReservationIntegrationTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo12/src/test/java/org/example/exo12/service/ReservationServiceTest.java

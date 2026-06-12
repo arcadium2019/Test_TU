@@ -1,0 +1,5 @@
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/test/java/org/example/exo11/bdd/CucumberRunnerTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/test/java/org/example/exo11/bdd/steps/TicketSteps.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/test/java/org/example/exo11/controller/TicketControllerTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/test/java/org/example/exo11/integration/TicketIntegrationTest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/test/java/org/example/exo11/service/TicketServiceTest.java

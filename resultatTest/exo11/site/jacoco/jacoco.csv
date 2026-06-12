@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Exo11,org.example.exo11.model,Priority,0,21,0,0,0,2,0,1,0,1
+Exo11,org.example.exo11.model,TicketStatus,0,21,0,0,0,2,0,1,0,1
+Exo11,org.example.exo11.model,Ticket,0,32,0,0,0,11,0,6,0,6
+Exo11,org.example.exo11.exception,InvalidStatusTransitionException,0,4,0,0,0,2,0,1,0,1
+Exo11,org.example.exo11.exception,GlobalExceptionHandler,1,36,1,1,0,7,1,5,0,5
+Exo11,org.example.exo11.exception,TicketNotFoundException,0,4,0,0,0,2,0,1,0,1
+Exo11,org.example.exo11,Exo11Application,5,3,0,0,2,1,1,1,1,1
+Exo11,org.example.exo11.repository,InMemoryTicketRepository,0,31,0,0,0,6,0,4,0,4
+Exo11,org.example,Main,21,0,2,0,5,0,3,0,2,0
+Exo11,org.example.exo11.dto,CreateTicketRequest,0,17,0,0,0,5,0,5,0,5
+Exo11,org.example.exo11.dto,UpdateStatusRequest,0,10,0,0,0,3,0,3,0,3
+Exo11,org.example.exo11.controller,TicketController,0,30,0,0,0,7,0,5,0,5
+Exo11,org.example.exo11.service,TicketService,0,91,0,2,0,23,0,8,0,7

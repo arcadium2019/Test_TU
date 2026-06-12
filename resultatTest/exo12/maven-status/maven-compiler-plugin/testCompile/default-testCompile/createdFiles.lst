@@ -1,0 +1,6 @@
+org/example/exo12/controller/RoomControllerTest.class
+org/example/exo12/integration/ReservationIntegrationTest.class
+org/example/exo12/bdd/CucumberRunnerTest.class
+org/example/exo12/service/ReservationServiceTest.class
+org/example/exo12/bdd/steps/ReservationSteps.class
+org/example/exo12/controller/ReservationControllerTest.class

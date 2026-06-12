@@ -1,0 +1,14 @@
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/Main.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/Exo11Application.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/controller/TicketController.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/dto/CreateTicketRequest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/dto/UpdateStatusRequest.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/exception/GlobalExceptionHandler.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/exception/InvalidStatusTransitionException.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/exception/TicketNotFoundException.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/model/Priority.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/model/Ticket.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/model/TicketStatus.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/repository/InMemoryTicketRepository.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/repository/TicketRepository.java
+/home/teo/Documents/Ynov/M1/TestAndTU/exo_1_2/Exo11/src/main/java/org/example/exo11/service/TicketService.java
