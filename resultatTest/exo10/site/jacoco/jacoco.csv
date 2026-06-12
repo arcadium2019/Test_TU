@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Exo10,org.example.exo10.model,User,3,18,0,0,1,7,1,3,1,3
+Exo10,org.example.exo10.model,Order,3,75,0,2,1,17,1,9,1,8
+Exo10,org.example.exo10.model,Product,0,21,0,0,0,8,0,4,0,4
+Exo10,org.example.exo10.service,LoginFailedException,0,4,0,0,0,2,0,1,0,1
+Exo10,org.example.exo10.service,OrderService,0,79,0,2,0,20,0,8,0,7
+Exo10,org.example.exo10.service,ProductNotInOrderException,0,4,0,0,0,2,0,1,0,1
+Exo10,org.example.exo10.service,ProductService,0,21,0,0,0,6,0,4,0,4
+Exo10,org.example.exo10.service,UserService,0,51,0,2,0,11,0,6,0,5
+Exo10,org.example.exo10.service,OrderNotFoundException,0,4,0,0,0,2,0,1,0,1
+Exo10,org.example.exo10.service,UserAlreadyExistsException,0,4,0,0,0,2,0,1,0,1
+Exo10,org.example,Main,21,0,2,0,5,0,3,0,2,0
