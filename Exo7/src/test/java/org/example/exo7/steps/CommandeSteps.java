@@ -20,59 +20,59 @@ import static org.mockito.Mockito.*;
 
 public class CommandeSteps {
 
-    private ProduitRepository produitRepository;
-    private CommandeService commandeService;
-    private Recu recu;
+    private ProduitRepository productRepository;
+    private CommandeService orderService;
+    private Recu receipt;
     private Exception exception;
 
     @Before
     public void setUp() {
-        produitRepository = mock(ProduitRepository.class);
-        commandeService = new CommandeService(produitRepository);
-        recu = null;
+        productRepository = mock(ProduitRepository.class);
+        orderService = new CommandeService(productRepository);
+        receipt = null;
         exception = null;
     }
 
-    @Given("le produit {string} avec prix {double} et stock {int}")
-    public void leProduitAvecPrixEtStock(String ref, double prix, int stock) {
-        Produit produit = new Produit(ref, "Produit " + ref, prix, stock);
-        when(produitRepository.findByReference(ref)).thenReturn(Optional.of(produit));
+    @Given("the product {string} with price {double} and stock {int}")
+    public void theProductWithPriceAndStock(String ref, double price, int stock) {
+        Produit product = new Produit(ref, "Product " + ref, price, stock);
+        when(productRepository.findByReference(ref)).thenReturn(Optional.of(product));
     }
 
-    @Given("aucun produit avec la référence {string}")
-    public void aucunProduitAvecLaReference(String ref) {
-        when(produitRepository.findByReference(ref)).thenReturn(Optional.empty());
+    @Given("no product with reference {string}")
+    public void noProductWithReference(String ref) {
+        when(productRepository.findByReference(ref)).thenReturn(Optional.empty());
     }
 
-    @When("le client {word} commande {int} unités du produit {string}")
-    public void leClientCommande(String typeClient, int quantite, String ref) {
-        Commande commande = new Commande("client@test.com", ref, quantite, TypeClient.valueOf(typeClient));
+    @When("the customer {word} orders {int} units of product {string}")
+    public void theCustomerOrders(String customerType, int quantity, String ref) {
+        Commande order = new Commande("customer@test.com", ref, quantity, TypeClient.valueOf(customerType));
         try {
-            recu = commandeService.passerCommande(commande);
+            receipt = orderService.passerCommande(order);
         } catch (CommandeRefuseeException e) {
             exception = e;
         }
     }
 
-    @Then("la commande est acceptée")
-    public void laCommandeEstAcceptee() {
-        assertNull(exception, () -> "Commande refusée inattendue : " + (exception != null ? exception.getMessage() : ""));
-        assertNotNull(recu);
+    @Then("the order is accepted")
+    public void theOrderIsAccepted() {
+        assertNull(exception, () -> "Unexpected refused order: " + (exception != null ? exception.getMessage() : ""));
+        assertNotNull(receipt);
     }
 
-    @And("le montant total est {double}")
-    public void leMontantTotalEst(double montant) {
-        assertEquals(montant, recu.getMontantTotal(), 0.01);
+    @And("the total amount is {double}")
+    public void theTotalAmountIs(double amount) {
+        assertEquals(amount, receipt.getMontantTotal(), 0.01);
     }
 
-    @And("le message de confirmation est {string}")
-    public void leMessageDeConfirmationEst(String message) {
-        assertEquals(message, recu.getMessageConfirmation());
+    @And("the confirmation message is {string}")
+    public void theConfirmationMessageIs(String message) {
+        assertEquals(message, receipt.getMessageConfirmation());
     }
 
-    @Then("la commande est refusée avec le message {string}")
-    public void laCommandeEstRefuseeAvecLeMessage(String message) {
-        assertNotNull(exception, "Une exception était attendue");
+    @Then("the order is refused with message {string}")
+    public void theOrderIsRefusedWithMessage(String message) {
+        assertNotNull(exception, "An exception was expected");
         assertTrue(exception.getMessage().contains(message));
     }
 }

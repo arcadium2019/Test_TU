@@ -27,54 +27,54 @@ public class ReservationSteps {
 
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    private SalleRepository salleRepository;
-    private ReservationRepository reservationRepository;
+    private SalleRepository roomRepository;
+    private ReservationRepository bookingRepository;
     private NotificationService notificationService;
     private ReservationService reservationService;
 
-    private final List<Reservation> reservationsExistantes = new ArrayList<>();
+    private final List<Reservation> existingReservations = new ArrayList<>();
     private ConfirmationReservation confirmation;
     private Exception exception;
 
     @Before
     public void setUp() {
-        salleRepository = mock(SalleRepository.class);
-        reservationRepository = mock(ReservationRepository.class);
+        roomRepository = mock(SalleRepository.class);
+        bookingRepository = mock(ReservationRepository.class);
         notificationService = mock(NotificationService.class);
-        reservationService = new ReservationService(salleRepository, reservationRepository, notificationService);
-        reservationsExistantes.clear();
+        reservationService = new ReservationService(roomRepository, bookingRepository, notificationService);
+        existingReservations.clear();
         confirmation = null;
         exception = null;
-        when(reservationRepository.findByCodeSalle(anyString())).thenReturn(reservationsExistantes);
+        when(bookingRepository.findByCodeSalle(anyString())).thenReturn(existingReservations);
     }
 
-    @Given("la salle {string} avec nom {string} et capacité {int}")
-    public void laSalleAvecNomEtCapacite(String code, String nom, int capacite) {
-        Salle salle = new Salle(code, nom, capacite);
-        when(salleRepository.findByCode(code)).thenReturn(Optional.of(salle));
+    @Given("the room {string} with name {string} and capacity {int}")
+    public void theRoomWithNameAndCapacity(String code, String name, int capacity) {
+        Salle room = new Salle(code, name, capacity);
+        when(roomRepository.findByCode(code)).thenReturn(Optional.of(room));
     }
 
-    @Given("aucune salle avec le code {string}")
-    public void aucuneSalleAvecLeCode(String code) {
-        when(salleRepository.findByCode(code)).thenReturn(Optional.empty());
+    @Given("no room with code {string}")
+    public void noRoomWithCode(String code) {
+        when(roomRepository.findByCode(code)).thenReturn(Optional.empty());
     }
 
-    @Given("une réservation existante sur {string} du {string} au {string}")
-    public void uneReservationExistante(String codeSalle, String debut, String fin) {
-        Reservation existante = new Reservation(
-                "autre@test.com", codeSalle, 3,
-                LocalDateTime.parse(debut, FMT),
-                LocalDateTime.parse(fin, FMT)
+    @Given("an existing reservation on {string} from {string} to {string}")
+    public void anExistingReservation(String roomCode, String start, String end) {
+        Reservation existing = new Reservation(
+                "other@test.com", roomCode, 3,
+                LocalDateTime.parse(start, FMT),
+                LocalDateTime.parse(end, FMT)
         );
-        reservationsExistantes.add(existante);
+        existingReservations.add(existing);
     }
 
-    @When("l'utilisateur {string} réserve {string} pour {int} participants du {string} au {string}")
-    public void lUtilisateurReserve(String email, String codeSalle, int participants, String debut, String fin) {
+    @When("the user {string} books {string} for {int} participants from {string} to {string}")
+    public void theUserBooks(String email, String roomCode, int participants, String start, String end) {
         Reservation reservation = new Reservation(
-                email, codeSalle, participants,
-                LocalDateTime.parse(debut, FMT),
-                LocalDateTime.parse(fin, FMT)
+                email, roomCode, participants,
+                LocalDateTime.parse(start, FMT),
+                LocalDateTime.parse(end, FMT)
         );
         try {
             confirmation = reservationService.reserver(reservation);
@@ -83,30 +83,30 @@ public class ReservationSteps {
         }
     }
 
-    @Then("la réservation est acceptée")
-    public void laReservationEstAcceptee() {
-        assertNull(exception, () -> "Réservation refusée de façon inattendue : " + (exception != null ? exception.getMessage() : ""));
+    @Then("the reservation is accepted")
+    public void theReservationIsAccepted() {
+        assertNull(exception, () -> "Unexpected refused reservation: " + (exception != null ? exception.getMessage() : ""));
         assertNotNull(confirmation);
     }
 
-    @And("le message de confirmation est {string}")
-    public void leMessageDeConfirmationEst(String message) {
+    @And("the confirmation message is {string}")
+    public void theConfirmationMessageIs(String message) {
         assertEquals(message, confirmation.getMessage());
     }
 
-    @Then("la réservation est refusée avec le message {string}")
-    public void laReservationEstRefuseeAvecLeMessage(String message) {
-        assertNotNull(exception, "Une exception était attendue");
+    @Then("the reservation is refused with message {string}")
+    public void theReservationIsRefusedWithMessage(String message) {
+        assertNotNull(exception, "An exception was expected");
         assertTrue(exception.getMessage().contains(message));
     }
 
-    @And("une notification a été envoyée à {string}")
-    public void uneNotificationAEteEnvoyeeA(String email) {
+    @And("a notification has been sent to {string}")
+    public void aNotificationHasBeenSentTo(String email) {
         verify(notificationService).envoyerConfirmation(eq(email), any());
     }
 
-    @And("aucune notification n'a été envoyée")
-    public void aucuneNotificationNAEteEnvoyee() {
+    @And("no notification has been sent")
+    public void noNotificationHasBeenSent() {
         verify(notificationService, never()).envoyerConfirmation(any(), any());
     }
 }

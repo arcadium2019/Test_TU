@@ -26,16 +26,16 @@ public class ReservationService {
     public ConfirmationReservation reserver(Reservation reservation) {
         Optional<Salle> optSalle = salleRepository.findByCode(reservation.getCodeSalle());
         if (optSalle.isEmpty()) {
-            throw new ReservationRefuseeException("Salle inconnue");
+            throw new ReservationRefuseeException("Unknown room");
         }
 
         Salle salle = optSalle.get();
         if (reservation.getNombreParticipants() > salle.getCapaciteMax()) {
-            throw new ReservationRefuseeException("Capacité insuffisante");
+            throw new ReservationRefuseeException("Insufficient capacity");
         }
 
         if (!reservation.getDateFin().isAfter(reservation.getDateDebut())) {
-            throw new ReservationRefuseeException("Période invalide");
+            throw new ReservationRefuseeException("Invalid period");
         }
 
         List<Reservation> existantes = reservationRepository.findByCodeSalle(reservation.getCodeSalle());
@@ -43,7 +43,7 @@ public class ReservationService {
             // chevauchement : [r.debut, r.fin[ ∩ [new.debut, new.fin[ ≠ ∅
             if (r.getDateDebut().isBefore(reservation.getDateFin())
                     && reservation.getDateDebut().isBefore(r.getDateFin())) {
-                throw new ReservationRefuseeException("Créneau indisponible");
+                throw new ReservationRefuseeException("Slot unavailable");
             }
         }
 
@@ -52,7 +52,7 @@ public class ReservationService {
                 reservation.getNombreParticipants(),
                 reservation.getDateDebut(),
                 reservation.getDateFin(),
-                "Réservation confirmée"
+                "Reservation confirmed"
         );
         notificationService.envoyerConfirmation(reservation.getEmailUtilisateur(), confirmation);
         return confirmation;

@@ -18,12 +18,12 @@ public class CommandeService {
     public Recu passerCommande(Commande commande) {
         Optional<Produit> optProduit = produitRepository.findByReference(commande.getReferenceProduit());
         if (optProduit.isEmpty()) {
-            throw new CommandeRefuseeException("Produit inconnu");
+            throw new CommandeRefuseeException("Unknown product");
         }
 
         Produit produit = optProduit.get();
         if (commande.getQuantite() > produit.getStock()) {
-            throw new CommandeRefuseeException("Stock insuffisant");
+            throw new CommandeRefuseeException("Insufficient stock");
         }
 
         double remise = switch (commande.getTypeClient()) {
@@ -33,6 +33,6 @@ public class CommandeService {
         };
 
         double montant = produit.getPrixUnitaire() * commande.getQuantite() * (1 - remise);
-        return new Recu(commande.getReferenceProduit(), commande.getQuantite(), montant, "Commande confirmée");
+        return new Recu(commande.getReferenceProduit(), commande.getQuantite(), montant, "Order confirmed");
     }
 }
